@@ -1,6 +1,8 @@
 
 local user='%{$fg[magenta]%}%n@%{$fg[magenta]%}%m%{$reset_color%}'
-local pwd='%{$fg[blue]%}%~%{$reset_color%}'
+# https://superuser.com/questions/1108413/zsh-prompt-with-current-working-directory/1108504#:~:text=current%20path%20(%251d).-,Share,-Improve%20this%20answer
+local pwd='%{$fg[blue]%}%1d%{$reset_color%}'
+
 local return_code='%(?..%{$fg[red]%}%? ↵%{$reset_color%})'
 local git_branch='$(git_prompt_status)%{$reset_color%}$(git_prompt_info)%{$reset_color%}'
 
@@ -20,5 +22,10 @@ ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg[cyan]%} ✭"
 ZSH_THEME_RUBY_PROMPT_PREFIX="%{$fg[green]%}‹"
 ZSH_THEME_RUBY_PROMPT_SUFFIX="›%{$reset_color%}"
 
-PROMPT="${user} ${pwd}$ "
+PROMPT="${user} ${pwd} %% "
 RPROMPT="${return_code} ${git_branch} \$(ruby_prompt_info)"
+
+# # https://scriptingosx.com/2019/07/moving-to-zsh-06-customizing-the-zsh-prompt/
+# NEWLINE=$'\n'
+# DATE=$( date +"[%Y-%m-%d %H:%M:%S]" )
+# PROMPT="${NEWLINE} %F{cyan}[%(!.%F{red}.%F{cyan})%n%F{cyan}@%m %F{cyan}%1~] %# %F{reset} "
